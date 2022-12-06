@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const { dbConnect } = require("./src/config/dbConnect");
 
 //import APIs
-//const TaskAPI = require('./apis/task.api');
+const UserApi = require('./src/apis/user.api');
 // const categoryAPI = require('./src/api/category.api');
 
 dotenv.config();
@@ -22,7 +22,7 @@ app.route('/').get((req, res) => {
 });
 
 //register router - CHANGEABLE
-// app.use('/task', TaskAPI());
+app.use('/task', UserApi());
 // app.use('/category', categoryAPI());
 
 app.listen(PORT, () => {
