@@ -22,7 +22,7 @@ app.route('/').get((req, res) => {
 });
 
 //register router - CHANGEABLE
-app.use('/task', UserApi());
+app.use('/', UserApi());
 // app.use('/category', categoryAPI());
 
 app.listen(PORT, () => {
