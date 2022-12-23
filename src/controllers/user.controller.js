@@ -7,7 +7,7 @@ const createToken = (_id) => {
   return jwt.sign({_id}, process.env.SECRET, { expiresIn: '3d' })
 };
 
-//create a task to db
+//Sign up a user
 const createUser = async (req, res) => {
   try {
 		const user = await User.findOne({ email: req.body.email });
@@ -52,8 +52,7 @@ const loginUser = async (req, res) => {
   } catch (error) {
     res.status(400).json({error: error.message})
   }
-}
-
+};
 
 module.exports = {
     createUser,
