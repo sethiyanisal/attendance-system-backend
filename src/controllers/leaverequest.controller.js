@@ -11,6 +11,41 @@ const createLeaveRequest = async (req, res) => {
       }
   };
 
-  module.exports = {
+ 
+const viewLeaveRequest = async (req, res) => {
+    try{
+        const leave = await Leave.findOne({postedBy:req.user});
+      
+    if(leave){
+        res.json(leave);
+    }else{
+        res.status(201).send({ message: "No Leave requests are added by you" }); 
+    }
+
+    }catch(error){
+        res.status(500).send({ message: "Internal Server Error" });
+    }
+
+};
+
+const viewAllLeaveRequest = async (req, res) => {
+    try{
+        const leave = await Leave.find();
+       
+    if(leave){ 
+        res.json(leave);
+    }else{
+        res.status(201).send({ message: "No Leave requests are added" }); 
+    }
+
+    }catch(error){
+        res.status(500).send({ message: "Internal Server Error" });
+    }
+
+};
+
+module.exports ={
     createLeaveRequest,
-  }
+    viewLeaveRequest,
+    viewAllLeaveRequest,
+}
