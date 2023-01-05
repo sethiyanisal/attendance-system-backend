@@ -28,7 +28,7 @@ const viewLeaveRequest = async (req, res) => {
 
 };
 
-const viewAllLeaveRequest = async (req, res) => {
+const viewAllLeaveRequest = async (res) => {
     try{
         const leave = await Leave.find();
        
