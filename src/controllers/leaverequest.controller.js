@@ -11,6 +11,24 @@ const createLeaveRequest = async (req, res) => {
       }
   };
 
+  const getLeaveRequestsById = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such user'})
+    }
+
+  const leave = await Leave.find({postedBy:id})
+
+  if (!leave) {
+    return res.status(404).json({error: 'No such leave'})
+  }
+  
+  res.status(200).send({data:leave})
+  };
+
+
   module.exports = {
     createLeaveRequest,
+    getLeaveRequestsById
   }

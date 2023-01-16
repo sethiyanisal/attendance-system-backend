@@ -8,6 +8,7 @@ module.exports = function () {
   router.use(requireAuth);
 
   router.post("/requestleave", leaverequestController.createLeaveRequest);
+  router.get("/leaverequestsbyid/:id", leaverequestController.getLeaveRequestsById);
   
   return router;
 }
