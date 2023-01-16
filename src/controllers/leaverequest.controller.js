@@ -27,8 +27,25 @@ const createLeaveRequest = async (req, res) => {
   res.status(200).send({data:leave})
   };
 
+  const viewAllLeaveRequest = async (req , res) => {
+    try{
+        const allleave = await Leave.find();
+       
+    if(allleave){ 
+        res.json(allleave);
+    }else{
+        res.status(201).send({ message: "No Leave requests are added" }); 
+    }
+
+    }catch(error){
+        res.status(500).send({ message: "Internal Server Error" });
+    }
+
+};
+
 
   module.exports = {
     createLeaveRequest,
-    getLeaveRequestsById
+    getLeaveRequestsById,
+    viewAllLeaveRequest
   }
