@@ -12,21 +12,21 @@ const createLeaveRequest = async (req, res) => {
   };
 
  
-const viewLeaveRequest = async (req, res) => {
-    try{
-        const leave = await Leave.find({postedBy:req.user});
-      
-    if(leave){
-        res.json(leave);
-    }else{
-        res.status(201).send({ message: "No Leave requests are added by you" }); 
+  const getLeaveRequestsById = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such user'})
     }
 
-    }catch(error){
-        res.status(500).send({ message: "Internal Server Error" });
-    }
+  const leave = await Leave.find({postedBy:id})
 
-};
+  if (!leave) {
+    return res.status(404).json({error: 'No such leave'})
+  }
+  
+  res.status(200).send({data:leave})
+  };
 
 const viewAllLeaveRequest = async (req , res) => {
     try{
@@ -46,6 +46,6 @@ const viewAllLeaveRequest = async (req , res) => {
 
 module.exports ={
     createLeaveRequest,
-    viewLeaveRequest,
+    getLeaveRequestsById,
     viewAllLeaveRequest,
 }
