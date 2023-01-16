@@ -14,7 +14,7 @@ const createLeaveRequest = async (req, res) => {
  
 const viewLeaveRequest = async (req, res) => {
     try{
-        const leave = await Leave.findOne({postedBy:req.user});
+        const leave = await Leave.find({postedBy:req.user});
       
     if(leave){
         res.json(leave);
@@ -28,7 +28,7 @@ const viewLeaveRequest = async (req, res) => {
 
 };
 
-const viewAllLeaveRequest = async (res) => {
+const viewAllLeaveRequest = async (req , res) => {
     try{
         const allleave = await Leave.find();
        
