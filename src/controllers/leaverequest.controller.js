@@ -30,10 +30,10 @@ const viewLeaveRequest = async (req, res) => {
 
 const viewAllLeaveRequest = async (res) => {
     try{
-        const leave = await Leave.find();
+        const allleave = await Leave.find();
        
-    if(leave){ 
-        res.json(leave);
+    if(allleave){ 
+        res.json(allleave);
     }else{
         res.status(201).send({ message: "No Leave requests are added" }); 
     }
