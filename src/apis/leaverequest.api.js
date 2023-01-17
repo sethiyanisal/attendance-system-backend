@@ -10,6 +10,8 @@ module.exports = function () {
   router.post("/requestleave", leaverequestController.createLeaveRequest);
   router.get("/leaverequestsbyid/:id", leaverequestController.getLeaveRequestsById);
   router.get("/userdetailsbyid/:id", leaverequestController.getUserDetailsById);
+  router.get("/viewallleaverequest",leaverequestController.viewAllLeaveRequest);
+  
   
   return router;
 }
