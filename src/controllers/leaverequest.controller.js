@@ -1,4 +1,5 @@
 const Leave = require("./../models/leaverequest.model");
+const User = require("./../models/user.model");
 const mongoose = require("mongoose");
 
 const createLeaveRequest = async (req, res) => {
@@ -27,8 +28,22 @@ const createLeaveRequest = async (req, res) => {
   res.status(200).send({data:leave})
   };
 
+  const getUserDetailsById = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such user'})
+    }
+
+  const user = await User.findOne({_id:id})
+
+  res.status(200).send({data:user})
+  };
+
+
 
   module.exports = {
     createLeaveRequest,
-    getLeaveRequestsById
+    getLeaveRequestsById,
+    getUserDetailsById
   }
