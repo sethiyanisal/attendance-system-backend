@@ -5,6 +5,7 @@ const leaveSchema = new mongoose.Schema({
     dateFrom: { type: String, required: true },
     dateTo: { type: String, required: true },
     subject: { type: String, required: true },
+    status: { type: String, required: true },
     postedBy: {type: mongoose.Schema.Types.ObjectId, ref:"users"}
   });
 
