@@ -28,6 +28,22 @@ const createLeaveRequest = async (req, res) => {
   res.status(200).send({data:leave})
   };
 
+  const viewLeaveRequestsById = async (req, res) => {
+    const { id } = req.params
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such leave'})
+    }
+
+  const leave = await Leave.findOne({_id:id}).populate("postedBy");
+
+  if (!leave) {
+    return res.status(404).json({error: 'No such leave'})
+  }
+  
+  res.status(200).send({data:leave})
+  };
+
   const getUserDetailsById = async (req, res) => {
     const { id } = req.params
 
@@ -43,7 +59,7 @@ const createLeaveRequest = async (req, res) => {
 
   const viewAllLeaveRequest = async (req , res) => {
     try{
-        const allleave = await Leave.find();
+        const allleave = await Leave.find().populate("postedBy");
        
     if(allleave){ 
         res.json(allleave);
@@ -62,5 +78,6 @@ const createLeaveRequest = async (req, res) => {
     createLeaveRequest,
     getLeaveRequestsById,
     getUserDetailsById,
-    viewAllLeaveRequest
+    viewAllLeaveRequest,
+    viewLeaveRequestsById
   }
