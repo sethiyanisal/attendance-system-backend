@@ -12,6 +12,6 @@ module.exports = function () {
   router.get("/userdetailsbyid/:id", leaverequestController.getUserDetailsById);
   router.get("/viewallleaverequest",leaverequestController.viewAllLeaveRequest);
   router.get("/viewleaverequestbyid/:id",leaverequestController.viewLeaveRequestsById);
-  
+  router.put("/editleaverequestbyid/:id",leaverequestController.editLeaveRequestsById);
   return router;
 }

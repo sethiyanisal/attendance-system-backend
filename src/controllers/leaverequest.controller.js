@@ -44,6 +44,25 @@ const createLeaveRequest = async (req, res) => {
   res.status(200).send({data:leave})
   };
 
+
+  const editLeaveRequestsById = async (req, res) => {
+    const { id } = req.params
+    const {status} = req.body
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such leave'})
+    }
+    
+    Leave.updateOne({_id:id}, 
+      {status:status}, function (err) {
+      if (err){
+        res.status(500).send({ message: "Internal Server Error" });
+      }
+      else{
+        res.status(201).send({ message: "Leave request status updated successfully" });
+      }
+  });
+  };
+
   const getUserDetailsById = async (req, res) => {
     const { id } = req.params
 
@@ -79,5 +98,6 @@ const createLeaveRequest = async (req, res) => {
     getLeaveRequestsById,
     getUserDetailsById,
     viewAllLeaveRequest,
-    viewLeaveRequestsById
+    viewLeaveRequestsById,
+    editLeaveRequestsById
   }
