@@ -8,6 +8,7 @@ const { dbConnect } = require("./src/config/dbConnect");
 //import APIs
 const UserApi = require('./src/apis/user.api');
 const LeaveApi = require('./src/apis/leaverequest.api');
+const TimePunchApi = require('./src/apis/timepunch.api');
 // const categoryAPI = require('./src/api/category.api');
 
 dotenv.config();
@@ -25,6 +26,7 @@ app.route('/').get((req, res) => {
 //register router - CHANGEABLE
 app.use('/', UserApi());
 app.use('/user', LeaveApi());
+app.use('/user', TimePunchApi());
 // app.use('/category', categoryAPI());
 
 app.listen(PORT, () => {
