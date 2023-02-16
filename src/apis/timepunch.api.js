@@ -8,6 +8,7 @@ module.exports = function () {
   router.use(requireAuth);
 
   router.post("/addtimecard", TimepunchController.createTimeCard);
+  router.post("/edittimecard/:id", TimepunchController.getPunchedInTimeCardById);
  
   
   return router;
