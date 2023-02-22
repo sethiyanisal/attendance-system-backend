@@ -15,22 +15,22 @@ const createTimeCard = async (req, res) => {
 const getPunchedInTimeCardById = async (req, res) => {
     const { id } = req.params
     try{
-        const updateID = await Timecard.find({dateOut:null, postedBy:id});
-        if(updateID){
-            console.log(req.body.dateOut);
-            Timecard.updateOne({id:updateID.id}, {dateOut:req.body.dateOut});
-            res.status(201).send({ message: "Time card found", updateID });
+        const timecard =await Timecard.findOne({dateOut:null, postedBy:id});
+        if(timecard){
+            const updateID = timecard.id;
+            Timecard.findByIdAndUpdate(updateID, {$set: {dateOut:req.body.dateOut}}, function (err) {
+                if (err){
+                  res.status(500).send({ message: "Internal Server Error" });
+                }
+                else{
+                  res.status(201).send({ message: "Time card updated successfully" });
+                }}); 
+        }else{
+            res.status(500).send({ message: "No such time card" });
         }
-    }catch(error){
-        res.status(500).send({ error });
+    }catch(err){
+        res.status(500).send({ err });
     }
-
-    // try{
-        
-    //     res.status(201).send({ message: "Time card updated successfully" });
-    // }catch(error){
-    //     res.status(500).send({ message: "Internal Server Error" });
-    // }
     
 };
 
