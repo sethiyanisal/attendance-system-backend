@@ -56,7 +56,24 @@ const loginUser = async (req, res) => {
   }
 };
 
+const getAllUsers = async (req, res) => {
+  try{
+    const allusers = await User.find()
+   
+if(allusers){ 
+    res.json(allusers);
+}else{
+    res.status(201).send({ message: "No users are added" }); 
+}
+
+}catch(error){
+    res.status(500).send({ message: "Internal Server Error" });
+}
+
+};
+
 module.exports = {
     createUser,
-    loginUser
+    loginUser,
+    getAllUsers
 };

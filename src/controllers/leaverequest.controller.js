@@ -76,6 +76,8 @@ const createLeaveRequest = async (req, res) => {
   };
 
 
+
+
   const viewAllLeaveRequest = async (req , res) => {
     try{
         const allleave = await Leave.find().populate("postedBy");
