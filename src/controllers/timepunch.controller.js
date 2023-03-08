@@ -50,9 +50,27 @@ const getTimeCardsById = async (req, res) => {
   res.status(200).send({data:timecards})
   };
 
+
+  const viewAllTimeCards = async (req , res) => {
+    try{
+        const timecards = await Timecard.find().populate("postedBy");
+       
+    if(timecards){ 
+        res.json(timecards);
+    }else{
+        res.status(201).send({ message: "No any time cards" }); 
+    }
+
+    }catch(error){
+        res.status(500).send({ message: "Internal Server Error" });
+    }
+
+};
+
 module.exports ={
     createTimeCard,
     getPunchedInTimeCardById,
-    getTimeCardsById
+    getTimeCardsById,
+    viewAllTimeCards
 }
 
