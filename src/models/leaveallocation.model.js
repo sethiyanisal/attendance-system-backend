@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const employeetypeSchema = new mongoose.Schema({
-    employeetype: { type: String, required: true },
+const leavesallocationSchema = new mongoose.Schema({
     annualleaves: { type: Number, required: true },
     casualleaves: { type: Number, required: true },
     bdayleaves: { type: Number, required: true },
@@ -10,6 +9,6 @@ const employeetypeSchema = new mongoose.Schema({
   
   });
 
-const EmpTypeLeaves = mongoose.model("emptypeleaves", employeetypeSchema);
+const LeaveAllocation = mongoose.model("leavesallocation", leavesallocationSchema);
 
-module.exports = EmpTypeLeaves;
+module.exports = LeaveAllocation;

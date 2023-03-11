@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const LeaveAllocation = require('../models/leaveallocation.model');
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
@@ -72,8 +73,11 @@ if(allusers){
 
 };
 
+
+
 module.exports = {
     createUser,
     loginUser,
-    getAllUsers
+    getAllUsers,
+    
 };
