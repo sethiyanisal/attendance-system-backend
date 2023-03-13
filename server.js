@@ -10,6 +10,7 @@ const UserApi = require('./src/apis/user.api');
 const LeaveApi = require('./src/apis/leaverequest.api');
 const TimePunchApi = require('./src/apis/timepunch.api');
 const EmpLeaveTypesApi = require('./src/apis/employeeleavetypes.api');
+const LeaveAllocationApi = require('./src/apis/leaveallocations.api')
 // const categoryAPI = require('./src/api/category.api');
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.use('/', UserApi());
 app.use('/user', LeaveApi());
 app.use('/user', TimePunchApi());
 app.use('/admin', EmpLeaveTypesApi());
+app.use('/admin', LeaveAllocationApi());
 // app.use('/category', categoryAPI());
 
 app.listen(PORT, () => {

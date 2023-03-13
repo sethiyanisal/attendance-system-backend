@@ -45,20 +45,8 @@ const getEmpTypeLeavesById = async (req, res) => {
   
   res.status(200).send({data:empleavetypes})
   };
-
-const leaveAllocation = async (req, res) => {
-    try {
-          const newleavesallocation = await new LeaveAllocation({...req.body,postedBy:req.user}).save();
-          res.status(201).send({ message: "Leave allocation added successfully" });
-  
-      } catch (error) {
-          res.status(500).send({ message: "Internal Server Error" });
-      }
-  };
-
 module.exports = {
     createEmpLeaveType,
     viewEmpLeaveTypes,
-    leaveAllocation,
     getEmpTypeLeavesById
   }
