@@ -6,9 +6,7 @@ const requireAuth = require('./../middleware/requireAuth');
 module.exports = function () {
   router.get("/viewemployeeleavetypes", employeeleavetypesController.viewEmpLeaveTypes);
   router.get("/getemployeetypeleaves/:id", employeeleavetypesController.getEmpTypeLeavesById);
-  router.use(requireAuth);
-  
-  router.post("/leavesallocation", employeeleavetypesController.leaveAllocation);
+  router.use(requireAuth); 
   router.post("/addemployeeleavetypes", employeeleavetypesController.createEmpLeaveType);
 
  
