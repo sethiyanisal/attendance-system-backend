@@ -56,7 +56,7 @@ const getTimeCardsById = async (req, res) => {
         const timecards = await Timecard.find().populate("postedBy");
        
     if(timecards){ 
-        res.json(timecards);
+        res.status(200).send({data:timecards});
     }else{
         res.status(201).send({ message: "No any time cards" }); 
     }
