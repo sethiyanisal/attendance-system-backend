@@ -72,8 +72,20 @@ if(allusers){
 
 };
 
+const getAllEmployees = async (req, res) => {
+  try{
+    const allusers = await User.find({userRole:2080});
+    res.status(200).send({data:allusers, message:"users found successfully"})
+
+  }catch(err){
+    res.status(500).send({ err: "Internal Server Error" });
+  }
+}
+
+
 module.exports = {
     createUser,
     loginUser,
-    getAllUsers
+    getAllUsers,
+    getAllEmployees
 };
